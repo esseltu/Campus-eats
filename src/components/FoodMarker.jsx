@@ -45,23 +45,32 @@ const FoodMarker = ({ spot, userLocation }) => {
       <Popup className="food-popup border-0 p-0" closeButton={false}>
         <div className="w-[280px] font-sans">
            {/* Header with image placeholder or color */}
-           <div className="bg-gradient-to-br from-orange-50 to-orange-100 h-24 flex items-center justify-center relative overflow-hidden">
-                <div className="absolute right-0 top-0 w-24 h-24 bg-secondary/10 rounded-full -mr-10 -mt-10 blur-xl"></div>
-                <div className="absolute left-0 bottom-0 w-16 h-16 bg-primary/10 rounded-full -ml-8 -mb-8 blur-lg"></div>
+           <div className="bg-gradient-to-br from-emerald-500 to-teal-600 h-24 relative overflow-visible">
+                {/* Decorative circles */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>
+                <div className="absolute bottom-0 left-0 w-24 h-24 bg-black/10 rounded-full -ml-12 -mb-12 blur-xl"></div>
                 
-                <div className="absolute top-3 right-4 z-20">
-                    <span className="text-[10px] uppercase tracking-wider font-bold px-2 py-1 rounded-lg shadow-sm bg-white/80 backdrop-blur-sm text-gray-700 border border-white/50">
+                {/* Price Badge */}
+                <div className="absolute top-3 right-3 z-20">
+                    <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-black/20 backdrop-blur-sm text-white border border-white/20 shadow-sm">
                     {spot.price}
                     </span>
                 </div>
 
-                <span className="text-5xl drop-shadow-md z-10 transform hover:scale-110 transition-transform duration-300 cursor-default">{emoji}</span>
+                {/* Centered Avatar Emoji */}
+                <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 z-30">
+                    <div className="w-16 h-16 bg-white rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.1)] flex items-center justify-center border-4 border-white relative group overflow-hidden">
+                        <div className="absolute inset-0 bg-orange-50/50 rounded-full"></div>
+                        <span className="text-4xl relative z-10 transform group-hover:scale-110 transition-transform duration-300 cursor-default leading-none mt-1">{emoji}</span>
+                    </div>
+                </div>
            </div>
            
-           <div className="p-5 bg-white relative">
-                <div className="absolute -top-6 left-5">
-                    <span className={`text-[10px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-sm border-2 border-white ${isSpotOpen ? 'bg-emerald-500 text-white' : 'bg-red-500 text-white'}`}>
-                    {isSpotOpen ? 'Open Now' : 'Closed'}
+           <div className="px-5 pb-5 pt-10 bg-white relative">
+                {/* Status Badge - moved to top right of body */}
+                <div className="absolute top-3 right-5">
+                    <span className={`text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 rounded-full border ${isSpotOpen ? 'bg-emerald-50 text-emerald-600 border-emerald-100' : 'bg-red-50 text-red-500 border-red-100'}`}>
+                    {isSpotOpen ? 'Open' : 'Closed'}
                     </span>
                 </div>
 
