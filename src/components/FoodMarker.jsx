@@ -50,9 +50,16 @@ const FoodMarker = ({ spot, userLocation }) => {
                 <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>
                 <div className="absolute bottom-0 left-0 w-24 h-24 bg-black/10 rounded-full -ml-12 -mb-12 blur-xl"></div>
                 
-                {/* Price Badge */}
-                <div className="absolute top-3 right-5 z-20">
-                    <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-black/20 backdrop-blur-sm text-white border border-white/20 shadow-sm">
+                {/* Status Badge - moved to top left of header */}
+                <div className="absolute top-3 left-4 z-20">
+                    <span className={`text-[10px] uppercase tracking-wider font-bold px-2 py-1 rounded-full border shadow-sm backdrop-blur-sm ${isSpotOpen ? 'bg-emerald-400/20 text-white border-white/30' : 'bg-red-500/20 text-white border-white/30'}`}>
+                    {isSpotOpen ? 'Open' : 'Closed'}
+                    </span>
+                </div>
+
+                {/* Price Badge - moved further left */}
+                <div className="absolute top-3 right-6 z-20">
+                    <span className="text-[10px] font-bold px-3 py-1 rounded-full bg-black/20 backdrop-blur-sm text-white border border-white/20 shadow-sm">
                     {spot.price}
                     </span>
                 </div>
@@ -67,13 +74,7 @@ const FoodMarker = ({ spot, userLocation }) => {
            </div>
            
            <div className="px-5 pb-5 pt-10 bg-white relative">
-                {/* Status Badge - moved to top left of body */}
-                <div className="absolute top-3 left-5">
-                    <span className={`text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 rounded-full border ${isSpotOpen ? 'bg-emerald-50 text-emerald-600 border-emerald-100' : 'bg-red-50 text-red-500 border-red-100'}`}>
-                    {isSpotOpen ? 'Open' : 'Closed'}
-                    </span>
-                </div>
-
+                
                 <h3 className="font-bold text-lg text-gray-800 leading-tight mb-1 mt-1">{spot.name}</h3>
                 
                 {distance && (
