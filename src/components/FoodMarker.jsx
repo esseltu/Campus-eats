@@ -17,6 +17,10 @@ const FoodMarker = ({ spot, userLocation }) => {
 
   const isSpotOpen = isOpenNow(spot.openHours, spot.daysOpen);
   
+  // Clean strings for display
+  const displayHours = spot.openHours ? spot.openHours.replace(/['"]/g, '') : '';
+  const displayDays = spot.daysOpen ? spot.daysOpen.replace(/['"]/g, '') : 'Mon - Sat';
+  
   const icon = L.divIcon({
     className: 'custom-icon',
     html: `<div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-xl transition-all hover:scale-110 hover:shadow-2xl relative group">
@@ -102,11 +106,11 @@ const FoodMarker = ({ spot, userLocation }) => {
                         <div className="flex flex-col gap-1">
                              <div className="text-[10px] text-gray-500 font-medium flex items-center gap-1.5">
                                 <FaCalendarAlt className="text-secondary/70" />
-                                <span>{spot.daysOpen || "Mon - Sat"}</span>
+                                <span>{displayDays}</span>
                              </div>
                              <div className="text-[10px] text-gray-500 font-medium flex items-center gap-1.5">
                                 <FaClock className="text-secondary/70" />
-                                <span>{spot.openHours}</span>
+                                <span>{displayHours}</span>
                              </div>
                         </div>
                         <button 

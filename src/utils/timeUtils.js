@@ -12,12 +12,16 @@ const dayMap = {
 export const isOpenNow = (openHours, daysOpen, dateObj = new Date()) => {
     if (!openHours) return false;
 
+    // Clean inputs (remove quotes if present)
+    const cleanHours = openHours.replace(/['"]/g, '').trim();
+    const cleanDays = daysOpen ? daysOpen.replace(/['"]/g, '').trim() : null;
+
     const now = dateObj;
     
     // 1. Check Days first
-    if (daysOpen && daysOpen !== 'Daily') {
+    if (cleanDays && cleanDays !== 'Daily') {
         const today = now.getDay(); // 0 = Sunday, 1 = Monday, ...
-        const normalizedDays = daysOpen.toLowerCase().trim();
+        const normalizedDays = cleanDays.toLowerCase();
         
         if (normalizedDays.includes('-')) {
             const [startStr, endStr] = normalizedDays.split('-').map(d => d.trim());
@@ -47,7 +51,7 @@ export const isOpenNow = (openHours, daysOpen, dateObj = new Date()) => {
         const currentMinutes = now.getMinutes();
         const currentTime = currentHours * 60 + currentMinutes;
 
-        const [start, end] = openHours.split('-').map(t => t.trim());
+        const [start, end] = cleanHours.split('-').map(t => t.trim());
         if (!start || !end) return false;
 
         const [startH, startM] = start.split(':').map(Number);
