@@ -29,12 +29,6 @@ function App() {
       setFilteredSpots(spots);
     } else if (filter === 'Open Now') {
       setFilteredSpots(spots.filter(spot => isOpenNow(spot.openHours, spot.daysOpen)));
-    } else if (filter === 'Ghanaian Food') {
-      // Simple heuristic for Ghanaian food based on types
-      const localFoods = ['Jollof', 'Banku', 'Waakye', 'Fufu', 'Kenkey', 'Rice Balls', 'Soup', 'Indomie', 'Fried Rice', 'Wele', 'Egg', 'Fish', 'Goat Soup'];
-      setFilteredSpots(spots.filter(spot => 
-        spot.foodTypes.some(type => localFoods.some(lf => type.toLowerCase().includes(lf.toLowerCase())))
-      ));
     }
   };
 
@@ -80,7 +74,7 @@ function App() {
             <div className="px-4 py-3 bg-gray-50/50 border-b border-gray-100 text-xs font-bold text-gray-400 uppercase tracking-wider">
               Filter by
             </div>
-            {['All', 'Open Now', 'Ghanaian Food'].map(filter => (
+            {['All', 'Open Now'].map(filter => (
               <button
                 key={filter}
                 onClick={() => handleFilter(filter)}
