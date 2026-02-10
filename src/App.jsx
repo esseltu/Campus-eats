@@ -28,7 +28,7 @@ function App() {
     if (filter === 'All') {
       setFilteredSpots(spots);
     } else if (filter === 'Open Now') {
-      setFilteredSpots(spots.filter(spot => isOpenNow(spot.openHours)));
+      setFilteredSpots(spots.filter(spot => isOpenNow(spot.openHours, spot.daysOpen)));
     } else if (filter === 'Ghanaian Food') {
       // Simple heuristic for Ghanaian food based on types
       const localFoods = ['Jollof', 'Banku', 'Waakye', 'Fufu', 'Kenkey', 'Rice Balls', 'Soup', 'Indomie', 'Fried Rice', 'Wele', 'Egg', 'Fish', 'Goat Soup'];
